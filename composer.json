@@ -1,0 +1,22 @@
+{
+    "name": "cchhay/laravel-request-search",
+    "version": "1.0.0",
+    "description": "A Laravel package with facade support. used for ",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Cchhay\\LaravelRequestSearch\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Cchhay\\LaravelRequestSearch\\LaravelRequestSearchServiceProvider"
+            ],
+            "aliases": {
+                "RequestSearch": "Cchhay\\LaravelRequestSearch\\Facades\\LaravelRequestSearch",
+                "RequestSearchReport": "Cchhay\\LaravelRequestSearch\\Facades\\LaravelRequestSearchReport"
+            }
+        }
+    }
+}

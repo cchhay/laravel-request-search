@@ -78,8 +78,8 @@ trait RequestSearch
 
         # search normal and join field
         foreach ($searches as $condition) {
+            # case search column not in where's columns
             if (!isset($wheres[$condition['column']])) {
-                dd('test');
                 throw400('err_search_column_not_in_model_field');
             }
             $condition['column'] = $wheres[$condition['column']];
@@ -104,6 +104,10 @@ trait RequestSearch
         foreach ($sorts as $sort) {
             $sortColumn = $sort['column'];
             $sortDirection = $sort['direction'] ? $sort['direction'] : 'asc';
+            # case sort column is in where's columns
+            if (!isset($wheres[$sortColumn])) {
+                throw400('err_sort_column_not_in_model_field');
+            }
             $model->orderBy($wheres[$sortColumn], $sortDirection);
         }
 

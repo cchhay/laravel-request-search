@@ -80,7 +80,7 @@ trait RequestSearch
         foreach ($searches as $condition) {
             # case search column not in where's columns
             if (!isset($wheres[$condition['column']])) {
-                throw400('err_search_column_not_in_model_field');
+                throw new \Exception('Search column not found in model field: ' . $condition['column']);
             }
             $condition['column'] = $wheres[$condition['column']];
             $strategy = new Strategy($model, new Condition($condition));
@@ -106,7 +106,7 @@ trait RequestSearch
             $sortDirection = $sort['direction'] ? $sort['direction'] : 'asc';
             # case sort column is in where's columns
             if (!isset($wheres[$sortColumn])) {
-                throw400('err_sort_column_not_in_model_field');
+                throw new \Exception('Sort column not found in model field: ' . $sortColumn);
             }
             $model->orderBy($wheres[$sortColumn], $sortDirection);
         }

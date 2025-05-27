@@ -78,6 +78,9 @@ trait RequestSearch
 
         # search normal and join field
         foreach ($searches as $condition) {
+            if (!$wheres[$condition['column']]) {
+                throw400('err_search_column_not_in_model_field');
+            }
             $condition['column'] = $wheres[$condition['column']];
             $strategy = new Strategy($model, new Condition($condition));
             $model = $strategy->search();

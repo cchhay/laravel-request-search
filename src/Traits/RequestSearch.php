@@ -78,7 +78,7 @@ trait RequestSearch
 
         # search normal and join field
         foreach ($searches as $condition) {
-            if (!isset($condition['column']) || !isset($wheres[$condition['column']])) {
+            if (!isset($wheres[$condition['column']])) {
                 throw400('err_search_column_not_in_model_field');
             }
             $condition['column'] = $wheres[$condition['column']];
